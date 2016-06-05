@@ -4,7 +4,7 @@ Projeto desenvolvido durante o [16 OpenSanca](http://www.meetup.com/pt-BR/opensa
 
 ## O Curso
 
-![Banner de divulgação](http://prntscr.com/bcgxzt)
+![Banner de divulgação](http://image.prntscr.com/image/b641834be7304242b0afb8c81945d983.jpeg)
 
 ## Resumo do curso
 
