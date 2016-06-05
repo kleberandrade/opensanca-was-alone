@@ -1,14 +1,23 @@
-# Curso de Unity 5.x - 16 OpenSanca (2016)
-
-Projeto desenvolvido durante o [16 OpenSanca](http://www.meetup.com/pt-BR/opensanca/), baseado no [Thomas was Alone](http://store.steampowered.com/app/220780/?l=portuguese)
-
-## O Curso
+## Curso de Unity 5.x - 16 OpenSanca (2016)
 
 ![Banner de divulgação](http://image.prntscr.com/image/b641834be7304242b0afb8c81945d983.jpeg)
 
-## Resumo do curso
+# Início do curso
 
-Durante o curso foram vistos:
+O Projeto desenvolvido durante o [16 OpenSanca](http://www.meetup.com/pt-BR/opensanca/) é baseado no [Thomas was Alone](http://store.steampowered.com/app/220780/?l=portuguese).
+
+No início foram levantados os seguintes jogos pelos alunos:
+
+* Agar.io 
+* Badland
+* Mario/Sonic/Castlevania
+* Thomas was alone (1º mais votado)
+* Quebra cabeça
+* Geometric dash
+* Veer (2º mais votado)
+* Bastard stealth (3º mais votado)
+
+## O Conteúdo
 
 * O mundo dos jogos [link dos slides](http://pt.slideshare.net/pdjkleber/o-mundo-do-desenvolvimento-de-jogos-61824823)
 * Introdução a Unity 5.3.5
