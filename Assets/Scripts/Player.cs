@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
     public float m_JumpForce;
 
     private Rigidbody2D m_Rigidbody;
+    private AudioSource m_AudioSource;
     private Transform m_Transform;
     private float m_Horizontal;
     private bool m_Jump;
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_Transform = GetComponent<Transform>();
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -39,7 +42,10 @@ public class Player : MonoBehaviour
 
         m_Jump = Input.GetButtonDown("Fire1");
         if (m_Jump && m_IsGrounded)
+        {
             m_Rigidbody.AddForce(Vector2.up * m_JumpForce);
+            m_AudioSource.Play();
+        }
 
         m_Movement = Vector2.right * m_Horizontal * m_Speed * Time.deltaTime;
 

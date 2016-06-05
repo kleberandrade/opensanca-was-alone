@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
     private Player[] m_Players;
     private CameraFollow m_CameraFollow;
     private int m_CurrentPlayer = 0;
-    public bool m_LoadAndSave = false;
 
     private void Start()
     {
@@ -15,8 +15,7 @@ public class PlayerManager : MonoBehaviour
         m_Players[m_CurrentPlayer].Enabled = true;
         m_CameraFollow.ChangeTarget(m_Players[m_CurrentPlayer].transform);
 
-        if (m_LoadAndSave)
-            Load();
+        Load();
     }
 
     private void Update()
@@ -29,11 +28,7 @@ public class PlayerManager : MonoBehaviour
 
         if (Input.GetButtonDown("Fire3"))
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            SceneManager.LoadScene("Menu");
         }
     }
 
@@ -46,8 +41,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if (m_LoadAndSave)
-            Save();
+        Save();
     }
 
     private void Save()
@@ -55,9 +49,9 @@ public class PlayerManager : MonoBehaviour
         for (int i = 0; i < m_Players.Length; i++)
         {
             string json = JsonUtility.ToJson(m_Players[i].transform.position);
-            PlayerPrefs.SetString("Player" + i, json);
+            PlayerPrefs.SetString(GlobalKeys.PlayerKey+ i, json);
         }
-        PlayerPrefs.SetInt("CurrentPlayer", m_CurrentPlayer);
+        PlayerPrefs.SetInt(GlobalKeys.CurrentPlayerKey, m_CurrentPlayer);
         PlayerPrefs.Save();
     }
 
@@ -65,10 +59,18 @@ public class PlayerManager : MonoBehaviour
     {
         for (int i = 0; i < m_Players.Length; i++)
         {
-            if (PlayerPrefs.HasKey("Player" + i))
-                m_Players[i].transform.position = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("Player" + i));
+            if (PlayerPrefs.HasKey(GlobalKeys.PlayerKey + i))
+            {
+                string json = PlayerPrefs.GetString(GlobalKeys.PlayerKey + i);
+                Vector3 position = JsonUtility.FromJson<Vector3>(json);
+                m_Players[i].transform.position = position;
+            }
 
-            m_CurrentPlayer = PlayerPrefs.GetInt("CurrentPlayer");
+            if (PlayerPrefs.HasKey(GlobalKeys.CurrentPlayerKey))
+            {
+                m_CurrentPlayer = PlayerPrefs.GetInt(GlobalKeys.CurrentPlayerKey);
+            }
+
             m_Players[0].Enabled = false;
             m_Players[m_CurrentPlayer].Enabled = true;
         }
